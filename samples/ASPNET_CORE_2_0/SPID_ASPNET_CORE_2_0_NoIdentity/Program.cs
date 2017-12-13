@@ -29,16 +29,21 @@ namespace SPID_ASPNET_CORE_2_0_NoIdentity
                  config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                  .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
                  ;
+             }).ConfigureLogging((hostingContext, logging) =>
+             {
+                 logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                 logging.AddConsole();
+                 logging.AddDebug();
              })
-              .UseKestrel(options =>
-              {
-                  options.Listen(IPAddress.Loopback, 5000);
-                  options.Listen(IPAddress.Loopback, 44355, listenOptions =>
-                  {
-                      listenOptions.UseHttps("cert/localhost.pfx", "P@ssw0rd!");
-                      listenOptions.UseConnectionLogging();
-                  });
-              })
+             //.UseKestrel(options =>
+             //{
+             //    options.Listen(IPAddress.Loopback, 5000);
+             //    options.Listen(IPAddress.Loopback, 44355, listenOptions =>
+             //    {
+             //        listenOptions.UseHttps("cert/localhost.pfx", "P@ssw0rd!");
+             //        listenOptions.UseConnectionLogging();
+             //    });
+             //})
              .Build();
 
         }

@@ -77,6 +77,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPID_ASPNET_CORE_2_0_NoIden
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNET_MVC5_NOIDENTITY", "..\..\samples\ASPNET_MVC5\ASPNET_MVC5_NOIDENTITY\ASPNET_MVC5_NOIDENTITY.csproj", "{2A150A8C-8279-4E1F-989B-5183CF8CE5EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Developers.Italia.SPID.AspNetCore", "Developers.Italia.SPID.AspNetCore\Developers.Italia.SPID.AspNetCore.csproj", "{C439BB85-2B37-4B83-90D8-38355053990B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{2A150A8C-8279-4E1F-989B-5183CF8CE5EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A150A8C-8279-4E1F-989B-5183CF8CE5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A150A8C-8279-4E1F-989B-5183CF8CE5EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C439BB85-2B37-4B83-90D8-38355053990B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C439BB85-2B37-4B83-90D8-38355053990B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C439BB85-2B37-4B83-90D8-38355053990B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C439BB85-2B37-4B83-90D8-38355053990B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

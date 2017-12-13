@@ -24,9 +24,9 @@ namespace SPID_ASPNET_CORE_2_0_NoIdentity.Controllers
         }
 
         [Authorize]
-        public IActionResult Contact()
+        public IActionResult UserInfo()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Your user info page.";
 
             return View();
         }

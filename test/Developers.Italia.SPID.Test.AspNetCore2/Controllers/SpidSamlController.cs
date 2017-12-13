@@ -43,7 +43,7 @@ namespace Developers.Italia.SPID.Test.AspNetCore2.Controllers
             {
                 //TODO LOG
             }
-            if ( resp.RequestStatus== SAML.AuthResponse.SamlRequestStatus.Success)
+            if ( resp.RequestStatus== SAML.SamlRequestStatus.Success)
             {
                 CookieOptions options = new CookieOptions();
                 options.Expires = resp.SessionIdExpireDate;

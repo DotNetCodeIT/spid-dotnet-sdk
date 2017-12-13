@@ -11,15 +11,7 @@ using System.Xml.Serialization;
 namespace Developers.Italia.SPID.SAML
 {
 
-    public enum SPIDLevel
-    {
-
-        SPIDL1 = 1,
-
-        SPIDL2 = 2,
-
-        SPIDL3 = 3
-    }
+   
 
     /// <summary>
     /// Auth Request Options
@@ -139,14 +131,21 @@ namespace Developers.Italia.SPID.SAML
         /// <returns></returns>
         public string GetAuthRequest()
         {
+            //Check SSO Destination URL
+            if (string.IsNullOrEmpty(this.Options.Destination)) throw new ArgumentNullException("Destination", "Destination cannot be null or empty");
+
             string result = "";
+
             DateTime requestDatTime = DateTime.UtcNow;
+            
             //New AuthnRequestType
             AuthnRequestType request = new AuthnRequestType();
-            request.Version = Options.Version;
 
             //Unique UUID
             request.ID = "_" + this.Options.UUID;
+
+            //SAML VERSION Default 2.0
+            request.Version = Options.Version;
 
             //Request DateTime
             request.IssueInstant = requestDatTime;
@@ -162,19 +161,13 @@ namespace Developers.Italia.SPID.SAML
                 request.ForceAuthn = false;
                 request.ForceAuthnSpecified = true;
             }
-
-
-            //SSO Destination URI
+            
+            //SSO (Single Sign On) Destination URI
             request.Destination = this.Options.Destination;
 
             //Service Provider Assertion Consumer Service Index
             request.AssertionConsumerServiceIndex = this.Options.AssertionConsumerServiceIndex;
             request.AssertionConsumerServiceIndexSpecified = true;
-
-            //Service Provider Attribute Consumer Service Index
-            request.AttributeConsumingServiceIndex = this.Options.AttributeConsumingServiceIndex;
-            request.AttributeConsumingServiceIndexSpecified = true;
-
 
             //Service Provider Attribute Consumer Service Index
             request.AttributeConsumingServiceIndex = this.Options.AttributeConsumingServiceIndex;
@@ -186,9 +179,9 @@ namespace Developers.Italia.SPID.SAML
                 Format = "urn:oasis:names:tc:SAML:2.0:nameid-format:entity",
                 Value = Options.SPUID,
                 NameQualifier = Options.SPUID
-                
             };
 
+            //NameId Policy
             request.NameIDPolicy = new NameIDPolicyType()
             {
                 Format = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient",
@@ -204,41 +197,47 @@ namespace Developers.Italia.SPID.SAML
                 NotOnOrAfterSpecified = true
             };
 
-            RequestedAuthnContextType requestedAuthn = new RequestedAuthnContextType
+            //Request Authn Context
+            request.RequestedAuthnContext = new RequestedAuthnContextType
             {
                 Comparison = AuthnContextComparisonType.minimum,
                 ComparisonSpecified = true,
                 ItemsElementName = new ItemsChoiceType7[] { ItemsChoiceType7.AuthnContextClassRef },
                 Items = new string[] { "https://www.spid.gov.it/SpidL" + ((int)Options.SPIDLevel).ToString() }
             };
-
-            request.RequestedAuthnContext = requestedAuthn;
-
-
-            string samlString = "";
-
-            XmlSerializer serializer = new XmlSerializer(request.GetType());
-
-            using (StringWriter stringWriter = new StringWriter())
+            
+            string samlRequest = "";
+            try
             {
-                XmlWriterSettings settings = new XmlWriterSettings()
+                XmlSerializer serializer = new XmlSerializer(request.GetType());
+
+                using (StringWriter stringWriter = new StringWriter())
                 {
-                    OmitXmlDeclaration = true,
-                    Indent = true,
-                    Encoding = Encoding.UTF8
-                };
+                    XmlWriterSettings settings = new XmlWriterSettings()
+                    {
+                        OmitXmlDeclaration = true,
+                        Indent = true,
+                        Encoding = Encoding.UTF8
+                    };
 
-                using (XmlWriter writer = XmlWriter.Create(stringWriter, settings))
-                {
-                    XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
-                    namespaces.Add("saml2p", "urn:oasis:names:tc:SAML:2.0:protocol");
+                    using (XmlWriter writer = XmlWriter.Create(stringWriter, settings))
+                    {
+                        XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
+                        namespaces.Add("saml2p", "urn:oasis:names:tc:SAML:2.0:protocol");
 
-                    serializer.Serialize(writer, request, namespaces);
+                        serializer.Serialize(writer, request, namespaces);
 
-                    samlString = stringWriter.ToString();
+                        samlRequest = stringWriter.ToString();
+                    }
                 }
             }
-            result = samlString;
+            catch (Exception ex)
+            {
+                //TODO log
+                throw ex;
+            }
+            
+            result = samlRequest;
 
 
             return result;

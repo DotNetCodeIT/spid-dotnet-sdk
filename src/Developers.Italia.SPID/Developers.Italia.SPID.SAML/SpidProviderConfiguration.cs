@@ -6,6 +6,8 @@ namespace Developers.Italia.SPID.SAML
 {
     public class SpidProviderConfiguration
     {
+      
+        //Identity Provider Config
         public string IdentityProviderId { get; set; }
 
         public string IdentityProviderName { get; set; }
@@ -14,9 +16,8 @@ namespace Developers.Italia.SPID.SAML
 
         public string IdentityProviderLogoutPostUrl { get; set; }
 
-        public string IdentityProviderCertPath { get; set; }
 
-
+        //Service Provider Config
         public string ServiceProviderId { get; set; }
 
         public string ServiceProviderCertPath { get; set; }
@@ -25,6 +26,15 @@ namespace Developers.Italia.SPID.SAML
 
         public string ServiceProviderPrivatekey { get; set; }
 
+
+        //Login Config
+        public ushort LoginAssertionConsumerServiceIndex { get; set; }
+
+        public ushort LoginAttributeConsumingServiceIndex { get; set; }
+
+        public SPIDLevel LoginSPIDLevel { get; set; } = SPIDLevel.SPIDL1;
     }
+
+  
 }
 
