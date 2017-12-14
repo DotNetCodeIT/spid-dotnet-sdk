@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Developers.Italia.SPID.Test.AspNetMvc5")]
+[assembly: AssemblyTitle("DotNetCode.SPID.Test.AspNetMvc5")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Developers.Italia.SPID.Test.AspNetMvc5")]
+[assembly: AssemblyProduct("DotNetCode.SPID.Test.AspNetMvc5")]
 [assembly: AssemblyCopyright("Copyright © Luca Congiu 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

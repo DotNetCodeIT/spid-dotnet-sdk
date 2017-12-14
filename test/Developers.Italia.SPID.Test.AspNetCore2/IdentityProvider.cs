@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Developers.Italia.SPID.Test.AspNetCore2
+namespace DotNetCode.SPID.Test.AspNetCore2
 {
 
     [XmlRoot(ElementName = "IdentityProvider")]

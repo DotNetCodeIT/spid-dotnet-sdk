@@ -9,7 +9,7 @@
 //using Microsoft.Net.Http.Headers;
 //using System.Globalization;
 //using System.Text;
-//using Developers.Italia.SPID.SAML;
+//using DotNetCode.SPID.SAML;
 //using System.Security.Cryptography.X509Certificates;
 //using Microsoft.AspNetCore.Hosting;
 //using Microsoft.Extensions.Configuration;

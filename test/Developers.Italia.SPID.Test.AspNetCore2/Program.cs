@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.Net;
 
-namespace Developers.Italia.SPID.Test.AspNetCore2
+namespace DotNetCode.SPID.Test.AspNetCore2
 {
     public class Program
     {

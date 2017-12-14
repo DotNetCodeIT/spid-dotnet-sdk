@@ -1,6 +1,6 @@
 using System;
 
-namespace Developers.Italia.SPID.Test.AspNetCore2.Models
+namespace DotNetCode.SPID.Test.AspNetCore2.Models
 {
     public class ErrorViewModel
     {

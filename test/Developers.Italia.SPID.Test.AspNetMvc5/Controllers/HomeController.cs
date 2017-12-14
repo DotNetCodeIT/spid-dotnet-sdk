@@ -5,7 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Developers.Italia.SPID.Test.AspNetMvc5.Controllers
+namespace DotNetCode.SPID.Test.AspNetMvc5.Controllers
 {
     public class HomeController : Controller
     {
@@ -48,7 +48,7 @@ namespace Developers.Italia.SPID.Test.AspNetMvc5.Controllers
 
             SAML.AuthRequest request = new SAML.AuthRequest(requestOptions);
 
-            X509Certificate2 signinCert = new X509Certificate2("C:\\SourceCode\\spid-dotnet-sdk\\test\\Developers.Italia.SPID.Test\\Certificates\\Hackathon\\www_dotnetcode_it.pfx", "P@ssw0rd!", X509KeyStorageFlags.Exportable);
+            X509Certificate2 signinCert = new X509Certificate2("C:\\SourceCode\\spid-dotnet-sdk\\test\\DotNetCode.SPID.Test\\Certificates\\Hackathon\\www_dotnetcode_it.pfx", "P@ssw0rd!", X509KeyStorageFlags.Exportable);
 
 
             string saml = request.GetSignedAuthRequest(signinCert);

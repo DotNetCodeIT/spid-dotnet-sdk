@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Developers.Italia.SPID.SAML
+namespace DotNetCode.SPID.SAML
 {
     public class SpidProviderConfiguration
     {

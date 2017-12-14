@@ -2,11 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <DockerComposeProjectPath>..\..\src\Developers.Italia.SPID\docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerComposeProjectPath>..\..\src\DotNetCode.SPID\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
     <PackageReference Include="NLog.Config" Version="4.4.12" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.4.1" />
@@ -21,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Developers.Italia.SPID\Developers.Italia.SPID.AspNetCore\Developers.Italia.SPID.AspNetCore.csproj" />
-    <ProjectReference Include="..\..\..\src\Developers.Italia.SPID\Developers.Italia.SPID.SAML\Developers.Italia.SPID.SAML.csproj" />
+    <ProjectReference Include="..\..\..\src\DotNetCode.SPID\DotNetCode.SPID.AspNetCore\DotNetCode.SPID.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\src\DotNetCode.SPID\DotNetCode.SPID.SAML\DotNetCode.SPID.SAML.csproj" />
   </ItemGroup>
 
   <ItemGroup>

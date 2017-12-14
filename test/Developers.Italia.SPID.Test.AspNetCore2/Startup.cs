@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 
-namespace Developers.Italia.SPID.Test.AspNetCore2
+namespace DotNetCode.SPID.Test.AspNetCore2
 {
     public class Startup
     {

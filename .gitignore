@@ -262,4 +262,4 @@ __pycache__/
 
 # Custom
 metadata_dotnetcode.xml
-/src/Developers.Italia.SPID/Developers.Italia.SPID.SAML/LogoutRequest.cs
+/src/DotNetCode.SPID/DotNetCode.SPID.SAML/LogoutRequest.cs

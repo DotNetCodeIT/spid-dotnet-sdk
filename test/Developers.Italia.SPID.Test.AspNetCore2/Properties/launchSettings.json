@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Developers.Italia.SPID.Test.AspNetCore2": {
+    "DotNetCode.SPID.Test.AspNetCore2": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

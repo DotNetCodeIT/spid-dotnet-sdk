@@ -12,7 +12,7 @@ using System.Security.Principal;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
-namespace Developers.Italia.SPID.Test.AspNetCore2.Controllers
+namespace DotNetCode.SPID.Test.AspNetCore2.Controllers
 {
     public class SpidSamlController : Controller
     {

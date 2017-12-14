@@ -6,7 +6,7 @@ using System.Reflection;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace Developers.Italia.SPID.Test
+namespace DotNetCode.SPID.Test
 {
     [TestClass]
     public class SAMLTest
@@ -46,7 +46,7 @@ namespace Developers.Italia.SPID.Test
             string certpath = string.Format("{0}\\{1}", Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ConfigurationManager.AppSettings["CertificatePath"].ToString());
             string privatekeypath = string.Format("{0}\\{1}", Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ConfigurationManager.AppSettings["PrivateKeyPath"].ToString());
 
-            X509Certificate2 signinCert = new X509Certificate2("C:\\SourceCode\\spid-dotnet-sdk\\test\\Developers.Italia.SPID.Test\\Certificates\\Hackathon\\www_dotnetcode_it.pfx", "P@ssw0rd!", X509KeyStorageFlags.Exportable);
+            X509Certificate2 signinCert = new X509Certificate2("C:\\SourceCode\\spid-dotnet-sdk\\test\\DotNetCode.SPID.Test\\Certificates\\Hackathon\\www_dotnetcode_it.pfx", "P@ssw0rd!", X509KeyStorageFlags.Exportable);
 
             //AsymmetricAlgorithm privateKey=new AsymmetricAlgorithm();
 
@@ -75,7 +75,7 @@ namespace Developers.Italia.SPID.Test
             string certpath = string.Format("{0}\\{1}", Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ConfigurationManager.AppSettings["CertificatePath"].ToString());
             string privatekeypath = string.Format("{0}\\{1}", Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), ConfigurationManager.AppSettings["PrivateKeyPath"].ToString());
 
-            X509Certificate2 signinCert = new X509Certificate2("C:\\SourceCode\\spid-dotnet-sdk\\test\\Developers.Italia.SPID.Test\\Certificates\\Hackathon\\www_dotnetcode_it.pfx", "P@ssw0rd!", X509KeyStorageFlags.Exportable);
+            X509Certificate2 signinCert = new X509Certificate2("C:\\SourceCode\\spid-dotnet-sdk\\test\\DotNetCode.SPID.Test\\Certificates\\Hackathon\\www_dotnetcode_it.pfx", "P@ssw0rd!", X509KeyStorageFlags.Exportable);
 
             //AsymmetricAlgorithm privateKey=new AsymmetricAlgorithm();
 

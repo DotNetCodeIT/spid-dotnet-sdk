@@ -1,7 +1,7 @@
-Developers.Italia.SPID.SAML
+DotNetCode.SPID.SAML
 =
 
-[![developers-italia-spid-saml MyGet Build Status](https://www.myget.org/BuildSource/Badge/developers-italia-spid-saml?identifier=b555063a-b4c6-40c8-b33c-b47c89ec5f80)](https://www.myget.org/) ![](https://img.shields.io/nuget/v/Developers.Italia.SPID.SAML.svg "nuget package") ![](https://img.shields.io/nuget/dt/Developers.Italia.SPID.SAML.svg "nuget downloads") ![](https://img.shields.io/github/issues/congiuluc/spid-dotnet-sdk.svg "open issue") 
+[![developers-italia-spid-saml MyGet Build Status](https://www.myget.org/BuildSource/Badge/developers-italia-spid-saml?identifier=b555063a-b4c6-40c8-b33c-b47c89ec5f80)](https://www.myget.org/) ![](https://img.shields.io/nuget/v/DotNetCode.SPID.SAML.svg "nuget package") ![](https://img.shields.io/nuget/dt/DotNetCode.SPID.SAML.svg "nuget downloads") ![](https://img.shields.io/github/issues/congiuluc/spid-dotnet-sdk.svg "open issue") 
 
 Questa libreria permette di interfacciare un'applicazione ASP.NET con un IdP (Identity Provider) abilitato a **SPID** ([Sistema Pubblico di Identità Digitale](https://www.spid.gov.it])).
 
@@ -56,7 +56,7 @@ Le informazioni più importanti, oltre al certificato utilizzato dall' IdP, sono
   Entry-point per il logout tramite HTTP-POST
 
 
-Potete trovare alcuni metadata di esempio qui: https://github.com/congiuluc/spid-dotnet-sdk/tree/master/src/Developers.Italia.SPID/SAML/Metadata/IdP/
+Potete trovare alcuni metadata di esempio qui: https://github.com/congiuluc/spid-dotnet-sdk/tree/master/src/DotNetCode.SPID/SAML/Metadata/IdP/
 
 
 
@@ -82,7 +82,7 @@ Oltre alle informazioni del certificato che verrà utilizzato per la firma, le p
   Url che l'IdP deve richiamare a fronte di una richiesta di Logout (può essere sia HTTP-POST che HTTP-REDIRECT)
 
 
-Potete trovare un metadata di esempio qui: https://github.com/congiuluc/spid-dotnet-sdk/tree/master/src/Developers.Italia.SPID/SAML/Metadata/SP/
+Potete trovare un metadata di esempio qui: https://github.com/congiuluc/spid-dotnet-sdk/tree/master/src/DotNetCode.SPID/SAML/Metadata/SP/
 
 
 
@@ -105,14 +105,14 @@ ___
 #### Creazione Nuova Richiesta:
 
 ```csharp
- Developers.Italia.SPID.SAML.AuthRequestOptions options = new Developers.Italia.SPID.SAML.AuthRequestOptions()
+ DotNetCode.SPID.SAML.AuthRequestOptions options = new DotNetCode.SPID.SAML.AuthRequestOptions()
  {
     //Request Unique Identifier
     UUID = Guid.NewGuid().ToString(),
     //Service Provider Unique Identifier (url like https://www.dotnetcode.it can be ok)
     SPUID = "MyServiceProviderUniqueIdentifier",
     //SPID Authentication Level (1/2/3)
-    SPIDLevel = Developers.Italia.SPID.SAML.SPIDLevel.SPIDL1,
+    SPIDLevel = DotNetCode.SPID.SAML.SPIDLevel.SPIDL1,
     //Identity Provider Url For SAML Request
     Destination = "https://www.myserviceprovider.com/samlurl",
     //Service Provider Consumer Service Index - Normally Callback URL (refer to Service Provider Metadata)
@@ -121,7 +121,7 @@ ___
     AttributeConsumingServiceIndex = 0
  };
 
- Developers.Italia.SPID.SAML.AuthRequest request = new Developers.Italia.SPID.SAML.AuthRequest(options);
+ DotNetCode.SPID.SAML.AuthRequest request = new DotNetCode.SPID.SAML.AuthRequest(options);
 
  string rsaXmlKey = "<![CDATA[<RSAKeyValue><Modulus>rBPwxOB3QM+Rhz+/...</RSAKeyValue>";
  
@@ -136,14 +136,14 @@ ___
 ```csharp
 public IActionResult SPID()
 {
-    Developers.Italia.SPID.SAML.AuthRequestOptions options = new Developers.Italia.SPID.SAML.AuthRequestOptions()
+    DotNetCode.SPID.SAML.AuthRequestOptions options = new DotNetCode.SPID.SAML.AuthRequestOptions()
     {
         //Request Unique Identifier
         UUID = Guid.NewGuid().ToString(),
         //Service Provider Unique Identifier (url like https://www.dotnetcode.it can be ok)
         SPUID = "https://www.dotnetcode.it",
         //SPID Authentication Level (1/2/3)
-        SPIDLevel = Developers.Italia.SPID.SAML.SPIDLevel.SPIDL1,
+        SPIDLevel = DotNetCode.SPID.SAML.SPIDLevel.SPIDL1,
         //Identity Provider Url For SAML Request
         Destination = "https://spidposte.test.poste.it/jod-fs/ssoservicepost",
         //Service Provider Consumer Service Index - Normally Callback URL (refer to Service Provider Metadata)
@@ -152,7 +152,7 @@ public IActionResult SPID()
         AttributeConsumingServiceIndex = 0
     };
 
-    Developers.Italia.SPID.SAML.AuthRequest request = new Developers.Italia.SPID.SAML.AuthRequest(options);
+    DotNetCode.SPID.SAML.AuthRequest request = new DotNetCode.SPID.SAML.AuthRequest(options);
 
 
     string rsaXmlKey = "<![CDATA[<RSAKeyValue><Modulus>rBPwxOB3QM+Rhz+/...</RSAKeyValue>";
@@ -213,11 +213,11 @@ public ActionResult ACS(IFormCollection collection)
 https://github.com/congiuluc/spid-dotnet-sdk/tree/master/samples/ASPNET_CORE_2_0/SPID_ASPNET_CORE_2_0_NoIdentity
 ___
 **Prerequisito**: Per eseguire la demo di ASP.NET Core 2 è necessario installare la verione 2 di .NET Core da https://www.microsoft.com/net/download <br/>
-E' possibile utilizzare una demo funzionante, basta scaricare da GitHub la cartella Developers.Italia.SPID.Test.AspNetCore2 che si trova sotto la directory Test, aprire la finestra di comando ed eseguire i seguenti comandi:
+E' possibile utilizzare una demo funzionante, basta scaricare da GitHub la cartella DotNetCode.SPID.Test.AspNetCore2 che si trova sotto la directory Test, aprire la finestra di comando ed eseguire i seguenti comandi:
 
 ```shell
-Developers.Italia.SPID.Test.AspNetCore2> dotnet build
-Developers.Italia.SPID.Test.AspNetCore2> dotnet run
+DotNetCode.SPID.Test.AspNetCore2> dotnet build
+DotNetCode.SPID.Test.AspNetCore2> dotnet run
 ```
 
 Una volta finito basterà andare all'indirizzo https://localhost:44355 sul browser e provare l'autenticazione tramite Poste.IT.

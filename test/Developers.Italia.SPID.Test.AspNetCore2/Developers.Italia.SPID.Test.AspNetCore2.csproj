@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Developers.Italia.SPID\Developers.Italia.SPID.SAML\Developers.Italia.SPID.SAML.csproj" />
+    <ProjectReference Include="..\..\src\DotNetCode.SPID\DotNetCode.SPID.SAML\DotNetCode.SPID.SAML.csproj" />
   </ItemGroup>
 
   <ItemGroup>

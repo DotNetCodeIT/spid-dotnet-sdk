@@ -6,7 +6,7 @@ using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Xml;
 
-namespace Developers.Italia.SPID.SAML
+namespace DotNetCode.SPID.SAML
 {
     internal static class SignHelper
     {

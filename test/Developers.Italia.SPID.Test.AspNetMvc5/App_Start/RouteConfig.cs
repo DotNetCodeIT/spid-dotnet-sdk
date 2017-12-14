@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Developers.Italia.SPID.Test.AspNetMvc5
+namespace DotNetCode.SPID.Test.AspNetMvc5
 {
     public class RouteConfig
     {

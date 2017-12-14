@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Developers.Italia.SPID.SAML", "Developers.Italia.SPID.SAML\Developers.Italia.SPID.SAML.csproj", "{131E421E-EA68-44B7-860D-CBEB110A00FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCode.SPID.SAML", "DotNetCode.SPID.SAML\DotNetCode.SPID.SAML.csproj", "{131E421E-EA68-44B7-860D-CBEB110A00FC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SAMLSchemas", "SAMLSchemas", "{30D881FE-B09A-40B7-A886-6C7D6AC21505}"
 	ProjectSection(SolutionItems) = preProject

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.Net.Http.Headers;
 using System.Globalization;
 using System.Text;
-using Developers.Italia.SPID.SAML;
+using DotNetCode.SPID.SAML;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -17,13 +17,14 @@ using Microsoft.Extensions.Configuration.Json;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
-namespace Developers.Italia.SPID.AspNetCore
+namespace DotNetCode.SPID.AspNetCore
 {
     public class SpidController : Controller
     {
         private const string UriSchemeDelimiter = "://";
-
+        private const string scheme = CookieAuthenticationDefaults.AuthenticationScheme;
         private const string InputTagFormat = @"<input type=""hidden"" name=""{0}"" value=""{1}"" />";
         private const string HtmlFormFormat = @"<!doctype html>
         <html>
@@ -225,7 +226,8 @@ namespace Developers.Italia.SPID.AspNetCore
                 //Response.Cookies.Delete("SPID_COOKIE");
                 //Response.Cookies.Append("SPID_COOKIE", JsonConvert.SerializeObject(resp), options);
 
-                var scheme = "SPIDCookie"; //CookieAuthenticationDefaults.AuthenticationScheme
+                //var scheme = "SPIDCookie"; //CookieAuthenticationDefaults.AuthenticationScheme
+             
 
                 var claims = resp.GetClaims();
 
@@ -245,12 +247,14 @@ namespace Developers.Italia.SPID.AspNetCore
 
                 HttpContext.User = principal;
 
-                await AuthenticationHttpContextExtensions.SignInAsync(HttpContext, scheme, principal,
+                //await AuthenticationHttpContextExtensions.SignInAsync(HttpContext, scheme, principal,
+                await HttpContext.SignInAsync(scheme, principal,
                        new AuthenticationProperties
                        {
                            ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
                            IsPersistent = true,
                            AllowRefresh = false
+                            
                        });
 
 
@@ -259,12 +263,12 @@ namespace Developers.Italia.SPID.AspNetCore
 
             if (string.IsNullOrEmpty(redirect)) { redirect = "/"; }
 
-            return Redirect(redirect);
+            return RedirectToAction("Index","Home");
         }
 
         public async Task<IActionResult> Logout(string providerId)
         {
-            var scheme = "SPIDCookie";
+           // var scheme = "SPIDCookie";
             await AuthenticationHttpContextExtensions.SignOutAsync(HttpContext, scheme);
 
             providerId = Request.Cookies["SpidIdp"];
@@ -275,10 +279,11 @@ namespace Developers.Italia.SPID.AspNetCore
             string spidLogoutRequest = GetSpidLogoutRequest(spidProviderConfiguration);
 
             string redirectUri = Request.Headers["Referer"].ToString();// Request.QueryString["RedirectUrl"];
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-
-            parameters.Add("SAMLRequest", System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(spidLogoutRequest)));
-            parameters.Add("RelayState", System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(redirectUri)));
+            Dictionary<string, string> parameters = new Dictionary<string, string>
+            {
+                { "SAMLRequest", System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(spidLogoutRequest)) },
+                { "RelayState", System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(redirectUri)) }
+            };
 
 
             var inputs = new StringBuilder();

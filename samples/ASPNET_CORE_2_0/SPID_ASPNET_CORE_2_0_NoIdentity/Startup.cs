@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SPID_ASPNET_CORE_2_0_NoIdentity
 {
@@ -22,12 +23,27 @@ namespace SPID_ASPNET_CORE_2_0_NoIdentity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication("SPIDCookie")
-              .AddCookie("SPIDCookie", options =>
-              {
-                  options.LoginPath = new PathString("/account/login");
-                  options.AccessDeniedPath = new PathString("/error?unauth");
-              });
+            string spidScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = spidScheme;
+
+                options.DefaultChallengeScheme = spidScheme;
+
+                options.DefaultSignInScheme = spidScheme;
+
+                options.DefaultSignOutScheme = spidScheme;
+
+                options.DefaultAuthenticateScheme = spidScheme;
+
+                options.DefaultForbidScheme = spidScheme;
+
+            }).AddCookie(spidScheme, options =>
+            {
+                options.LoginPath = new PathString("/account/login");
+                options.AccessDeniedPath = new PathString("/error?unauth");
+            });
+
             services.AddMvc();
         }
 

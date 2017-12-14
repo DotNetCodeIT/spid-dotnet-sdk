@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Developers.Italia.SPID.Test.AspNetCore2.Models;
+using DotNetCode.SPID.Test.AspNetCore2.Models;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Hosting;
 using System.Xml.Serialization;
@@ -12,7 +12,7 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Developers.Italia.SPID.Test.AspNetCore2.Controllers
+namespace DotNetCode.SPID.Test.AspNetCore2.Controllers
 {
     public class HomeController : Controller
     {

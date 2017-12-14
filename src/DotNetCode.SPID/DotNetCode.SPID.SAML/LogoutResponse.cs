@@ -1,4 +1,4 @@
-﻿using Developers.Italia.SPID.SAML.Schema;
+﻿using DotNetCode.SPID.SAML.Schema;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Developers.Italia.SPID.SAML
+namespace DotNetCode.SPID.SAML
 {
     public class LogoutResponse
     {
