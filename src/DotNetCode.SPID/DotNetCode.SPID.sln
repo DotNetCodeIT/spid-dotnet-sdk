@@ -79,6 +79,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNET_MVC5_NOIDENTITY", ".
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCode.SPID.AspNetCore", "DotNetCode.SPID.AspNetCore\DotNetCode.SPID.AspNetCore.csproj", "{C439BB85-2B37-4B83-90D8-38355053990B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCode.AspNetCore.Authentication.Spid", "..\DotNetCode.AspNetCore.Authentication.Spid\DotNetCode.AspNetCore.Authentication.Spid.csproj", "{7254D61B-7448-4B74-B480-42D5232659CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCode.Spid", "DotNetCode.Spid\DotNetCode.Spid.csproj", "{AF9DA626-5F81-49EF-9DD2-E4C5F882B00E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +121,14 @@ Global
 		{C439BB85-2B37-4B83-90D8-38355053990B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C439BB85-2B37-4B83-90D8-38355053990B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C439BB85-2B37-4B83-90D8-38355053990B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7254D61B-7448-4B74-B480-42D5232659CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7254D61B-7448-4B74-B480-42D5232659CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7254D61B-7448-4B74-B480-42D5232659CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7254D61B-7448-4B74-B480-42D5232659CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF9DA626-5F81-49EF-9DD2-E4C5F882B00E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF9DA626-5F81-49EF-9DD2-E4C5F882B00E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF9DA626-5F81-49EF-9DD2-E4C5F882B00E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF9DA626-5F81-49EF-9DD2-E4C5F882B00E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
