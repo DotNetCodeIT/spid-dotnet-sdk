@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\DotNetCode.SPID\DotNetCode.SPID.AspNetCore\DotNetCode.SPID.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\src\DotNetCode.SPID\DotNetCode.SPID.SAML\DotNetCode.SPID.SAML.csproj" />
   </ItemGroup>
 

@@ -5,12 +5,22 @@ using System.Configuration;
 using System.Reflection;
 using System.IO;
 using System.Security.Cryptography;
+using DotNetCode.Spid.Helpers;
 
 namespace DotNetCode.SPID.Test
 {
     [TestClass]
     public class SAMLTest
     {
+        [TestMethod]
+        public void GetSignedLogin()
+        {
+
+            X509Certificate2 cert = X509Helper.GetCertificateFromStoreByIssuerName("dotnetcode.it",false);
+            string request = SamlSpidHelper.GetSignedSamlLoginRequest(Guid.NewGuid().ToString(), "dotnetcode", "postUrl", cert);
+
+        }
+
         [TestMethod]
         public void GetAuthRequest()
         {

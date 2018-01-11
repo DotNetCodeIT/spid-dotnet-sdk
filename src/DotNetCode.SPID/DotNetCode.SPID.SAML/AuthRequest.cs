@@ -95,6 +95,7 @@ namespace DotNetCode.SPID.SAML
         public ushort AttributeConsumingServiceIndex { get; set; }
 
         public TimeSpan NotBefore { get; set; }
+
         public TimeSpan NotOnOrAfter { get; set; }
 
 

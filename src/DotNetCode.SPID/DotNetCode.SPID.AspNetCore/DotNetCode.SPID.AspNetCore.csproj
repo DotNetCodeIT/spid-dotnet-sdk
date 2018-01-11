@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DotNetCode.SPID.SAML\DotNetCode.SPID.SAML.csproj" />
+    <ProjectReference Include="..\DotNetCode.Spid\DotNetCode.Spid.csproj" />
   </ItemGroup>
 
   <ItemGroup>
