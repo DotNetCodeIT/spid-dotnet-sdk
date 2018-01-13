@@ -13,9 +13,7 @@ namespace DotNetCode.SPID.SAML
 
     public enum LogoutLevel
     {
-
         Admin = 1,
-
         User = 2
     }
 
@@ -42,6 +40,43 @@ namespace DotNetCode.SPID.SAML
         }
 
 
+
+
+        /// <summary>
+        /// Gets or sets the spid level.
+        /// </summary>
+        /// <value>
+        /// The spid level.
+        /// </value>
+        public LogoutLevel LogoutLevel { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the version.
+        /// </summary>
+        /// <value>
+        /// The version.
+        /// </value>
+        public string Version { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the not on or after.
+        /// </summary>
+        /// <value>
+        /// The not on or after.
+        /// </value>
+        public TimeSpan NotOnOrAfter { get; set; }
+
+
+
+    }
+
+    /// <summary>
+    /// Logout Request
+    /// </summary>
+    public class LogoutRequest
+    {
         /// <summary>
         /// Gets or sets the UUID.
         /// </summary>
@@ -58,13 +93,6 @@ namespace DotNetCode.SPID.SAML
         /// </value>
         public string SPUID { get; set; }
 
-        /// <summary>
-        /// Gets or sets the version.
-        /// </summary>
-        /// <value>
-        /// The version.
-        /// </value>
-        public string Version { get; set; }
 
         /// <summary>
         /// Gets or sets the destination.
@@ -73,23 +101,6 @@ namespace DotNetCode.SPID.SAML
         /// The destination.
         /// </value>
         public string Destination { get; set; }
-
-        /// <summary>
-        /// Gets or sets the spid level.
-        /// </summary>
-        /// <value>
-        /// The spid level.
-        /// </value>
-        public LogoutLevel LogoutLevel { get; set; }
-
-
-        /// <summary>
-        /// Gets or sets the not on or after.
-        /// </summary>
-        /// <value>
-        /// The not on or after.
-        /// </value>
-        public TimeSpan NotOnOrAfter { get; set; }
 
         /// <summary>
         /// Gets or sets the session identifier.
@@ -107,13 +118,6 @@ namespace DotNetCode.SPID.SAML
         /// </value>
         public string SubjectNameId { get; set; }
 
-    }
-
-    /// <summary>
-    /// Logout Request
-    /// </summary>
-    public class LogoutRequest
-    {
         /// <summary>
         /// Gets or sets the options.
         /// </summary>
@@ -122,14 +126,34 @@ namespace DotNetCode.SPID.SAML
         /// </value>
         public LogoutRequestOptions Options { get; set; }
 
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="LogoutRequest" /> class.
+        /// Initializes a new instance of the <see cref="LogoutRequest"/> class.
         /// </summary>
+        /// <param name="uuid">The UUID.</param>
+        /// <param name="spuid">The spuid.</param>
+        /// <param name="destination">The destination.</param>
+        /// <param name="sessionId">The session identifier.</param>
+        /// <param name="subjectNameId">The subject name identifier.</param>
         /// <param name="options">The options.</param>
-        public LogoutRequest(LogoutRequestOptions options)
+        public LogoutRequest(string uuid, string spuid, string destination, string sessionId,string subjectNameId)
         {
+            this.UUID = uuid;
+            this.SPUID = spuid;
+            this.Destination = destination;
+            this.SubjectNameId = subjectNameId;
+            this.Options = new LogoutRequestOptions();
+        }
+
+        public LogoutRequest(string uuid, string spuid, string destination, string sessionId, string subjectNameId, LogoutRequestOptions options)
+        {
+            this.UUID = uuid;
+            this.SPUID = spuid;
+            this.Destination = destination;
+            this.SubjectNameId = subjectNameId;
             this.Options = options;
         }
+
 
         /// <summary>
         /// Gets the logout request.
@@ -145,15 +169,15 @@ namespace DotNetCode.SPID.SAML
             request.Version = Options.Version;
 
             //Unique UUID
-            request.ID = "_" + this.Options.UUID;
+            request.ID = "_" + this.UUID;
 
             //Request DateTime
             request.IssueInstant = requestDatTime;
 
             //SLO Destination URI
-            request.Destination = this.Options.Destination;
+            request.Destination = this.Destination;
 
-            request.SessionIndex = new string[] { this.Options.SessionId };
+            request.SessionIndex = new string[] { this.SessionId };
 
             //Request Logout Level
             if (this.Options.LogoutLevel == LogoutLevel.Admin)
@@ -169,16 +193,16 @@ namespace DotNetCode.SPID.SAML
             request.Issuer = new NameIDType()
             {
                 Format = "urn:oasis:names:tc:SAML:2.0:nameid-format:entity",
-                Value = Options.SPUID,
-                NameQualifier = Options.SPUID
+                Value = this.SPUID,
+                NameQualifier = this.SPUID
 
             };
 
             request.Item = new NameIDType()
             {
                 Format = "urn:oasis:names:tc:SAML:2.0:nameid-format:transient",
-                SPNameQualifier = Options.SPUID,
-                Value = Options.SubjectNameId,
+                SPNameQualifier = this.SPUID,
+                Value = this.SubjectNameId,
             };
 
             request.NotOnOrAfterSpecified = true;
@@ -224,21 +248,14 @@ namespace DotNetCode.SPID.SAML
         public string GetSignedLogoutRequest(X509Certificate2 cert)
         {
             var xmlPrivateKey = "";
-
-            //Full Framework Only
-            //var xmlPrivateKey = cert.PrivateKey.ToXmlString(true);
-            //.Net Standard Extension
-            //var xmlPrivateKey = RSAKeyExtensions.ToXmlString((RSA)cert.PrivateKey, true);
-
 #if NETFULL
            xmlPrivateKey = cert.PrivateKey.ToXmlString(true);
 #endif
 
-#if NETSTANDARD1_0
+#if NETSTANDARD2_0
             xmlPrivateKey = RSAKeyExtensions.ToXmlString((RSA)cert.PrivateKey, true);
 #endif
-
-
+            
             return GetSignedLogoutRequest(cert, xmlPrivateKey);
         }
 
@@ -275,11 +292,15 @@ namespace DotNetCode.SPID.SAML
         /// <returns></returns>
         public string SignLogoutRequest(string logoutRequest, X509Certificate2 cert)
         {
-            //Full Framework Only
-            //var xmlPrivateKey = cert.PrivateKey.ToXmlString(true);
-            //.Net Standard Extension
-            //var xmlPrivateKey = RSAKeyExtensions.ToXmlString((RSA)cert.PrivateKey, true);
             var xmlPrivateKey = "";
+#if NETFULL
+           xmlPrivateKey = cert.PrivateKey.ToXmlString(true);
+#endif
+
+#if NETSTANDARD2_0
+            xmlPrivateKey = RSAKeyExtensions.ToXmlString((RSA)cert.PrivateKey, true);
+#endif
+
             return SignLogoutRequest(logoutRequest, cert, xmlPrivateKey);
         }
 

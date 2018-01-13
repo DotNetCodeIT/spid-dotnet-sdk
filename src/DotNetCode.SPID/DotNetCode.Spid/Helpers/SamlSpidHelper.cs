@@ -11,46 +11,93 @@ namespace DotNetCode.Spid.Helpers
     {
         #region "Not Signed Login Request"
 
+        /// <summary>
+        /// Gets the saml login request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <returns></returns>
         public static string GetSamlLoginRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl)
         {
             return GetSamlLoginRequest(requestId, serviceProviderId, identityProviderRequestUrl, new SamlSpidProviderLoginOptions());
         }
 
+        /// <summary>
+        /// Gets the saml login request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="assertionConsumerServiceIndex">Index of the assertion consumer service.</param>
+        /// <returns></returns>
         public static string GetSamlLoginRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, ushort assertionConsumerServiceIndex)
         {
             return GetSamlLoginRequest(requestId, serviceProviderId, identityProviderRequestUrl, new SamlSpidProviderLoginOptions() { AssertionConsumerServiceIndex = assertionConsumerServiceIndex });
         }
 
+        /// <summary>
+        /// Gets the saml login request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="assertionConsumerServiceIndex">Index of the assertion consumer service.</param>
+        /// <param name="spidAuthLevel">The spid authentication level.</param>
+        /// <returns></returns>
         public static string GetSamlLoginRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, ushort assertionConsumerServiceIndex, SpidAuthLevel spidAuthLevel)
         {
             return GetSamlLoginRequest(requestId, serviceProviderId, identityProviderRequestUrl, new SamlSpidProviderLoginOptions() { AssertionConsumerServiceIndex = assertionConsumerServiceIndex, SpidLevel = spidAuthLevel });
         }
 
+        /// <summary>
+        /// Gets the saml login request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="assertionConsumerServiceIndex">Index of the assertion consumer service.</param>
+        /// <param name="attributeConsumingServiceIndex">Index of the attribute consuming service.</param>
+        /// <returns></returns>
         public static string GetSamlLoginRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, ushort assertionConsumerServiceIndex, ushort attributeConsumingServiceIndex)
         {
             return GetSamlLoginRequest(requestId, serviceProviderId, identityProviderRequestUrl, new SamlSpidProviderLoginOptions() { AssertionConsumerServiceIndex = assertionConsumerServiceIndex, AttributeConsumingServiceIndex = attributeConsumingServiceIndex });
         }
 
+        /// <summary>
+        /// Gets the saml login request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="assertionConsumerServiceIndex">Index of the assertion consumer service.</param>
+        /// <param name="attributeConsumingServiceIndex">Index of the attribute consuming service.</param>
+        /// <param name="spidAuthLevel">The spid authentication level.</param>
+        /// <returns></returns>
         public static string GetSamlLoginRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, ushort assertionConsumerServiceIndex, ushort attributeConsumingServiceIndex, SpidAuthLevel spidAuthLevel)
         {
             return GetSamlLoginRequest(requestId, serviceProviderId, identityProviderRequestUrl, new SamlSpidProviderLoginOptions() { AssertionConsumerServiceIndex = assertionConsumerServiceIndex, AttributeConsumingServiceIndex = attributeConsumingServiceIndex, SpidLevel = spidAuthLevel });
         }
 
+        /// <summary>
+        /// Gets the saml login request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="options">The options.</param>
+        /// <returns></returns>
         public static string GetSamlLoginRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, SamlSpidProviderLoginOptions options)
         {
             AuthRequestOptions authRequestOptions = new AuthRequestOptions()
             {
-                UUID = requestId,
-                SPUID = serviceProviderId,
-                Destination = identityProviderRequestUrl,
                 AssertionConsumerServiceIndex = options.AssertionConsumerServiceIndex,
                 AttributeConsumingServiceIndex = options.AttributeConsumingServiceIndex,
-                SPIDLevel = (SPIDLevel)options.SpidLevel,
                 NotBefore = options.NotBefore,
                 NotOnOrAfter = options.NotOnOrAfter,
                 Version = options.Version
             };
-            AuthRequest authRequest = new AuthRequest(authRequestOptions);
+            AuthRequest authRequest = new AuthRequest(requestId, serviceProviderId, identityProviderRequestUrl, (SPIDLevel)options.SpidLevel, authRequestOptions);
             return authRequest.GetAuthRequest();
         }
 
@@ -58,30 +105,54 @@ namespace DotNetCode.Spid.Helpers
 
         #region "Not Signed Logout Request"
 
+        /// <summary>
+        /// Gets the saml logout request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="sessionId">The session identifier.</param>
+        /// <param name="subjectNameId">The subject name identifier.</param>
+        /// <returns></returns>
         public static string GetSamlLogoutRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, string sessionId, string subjectNameId)
         {
             return GetSamlLogoutRequest(requestId, serviceProviderId, identityProviderRequestUrl, sessionId, subjectNameId, new SamlSpidProviderLogoutOptions());
         }
 
+        /// <summary>
+        /// Gets the saml logout request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="sessionId">The session identifier.</param>
+        /// <param name="subjectNameId">The subject name identifier.</param>
+        /// <param name="logoutLevel">The logout level.</param>
+        /// <returns></returns>
         public static string GetSamlLogoutRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, string sessionId, string subjectNameId, SpidLogoutLevel logoutLevel)
         {
             return GetSamlLogoutRequest(requestId, serviceProviderId, identityProviderRequestUrl, sessionId, subjectNameId, new SamlSpidProviderLogoutOptions() { LogoutLevel = logoutLevel });
         }
 
+        /// <summary>
+        /// Gets the saml logout request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="sessionId">The session identifier.</param>
+        /// <param name="subjectNameId">The subject name identifier.</param>
+        /// <param name="options">The options.</param>
+        /// <returns></returns>
         public static string GetSamlLogoutRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, string sessionId, string subjectNameId, SamlSpidProviderLogoutOptions options)
         {
             LogoutRequestOptions logoutRequestOptions = new LogoutRequestOptions()
             {
-                UUID = requestId,
-                Destination = identityProviderRequestUrl,
-                SPUID = serviceProviderId,
-                SessionId = sessionId,
-                SubjectNameId = subjectNameId,
                 LogoutLevel = (LogoutLevel)options.LogoutLevel,
                 NotOnOrAfter = options.NotOnOrAfter,
                 Version = options.Version
             };
-            LogoutRequest logoutRequest = new LogoutRequest(logoutRequestOptions);
+            LogoutRequest logoutRequest = new LogoutRequest(requestId, serviceProviderId, identityProviderRequestUrl, sessionId, subjectNameId, logoutRequestOptions);
             return logoutRequest.GetLogoutRequest();
 
         }
@@ -91,46 +162,99 @@ namespace DotNetCode.Spid.Helpers
 
         #region "Signed Login Request"
 
+        /// <summary>
+        /// Gets the signed saml login request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="certificate">The certificate.</param>
+        /// <returns></returns>
         public static string GetSignedSamlLoginRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, X509Certificate2 certificate)
         {
             return GetSignedSamlLoginRequest(requestId, serviceProviderId, identityProviderRequestUrl, certificate, new SamlSpidProviderLoginOptions());
         }
 
+        /// <summary>
+        /// Gets the signed saml login request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="certificate">The certificate.</param>
+        /// <param name="assertionConsumerServiceIndex">Index of the assertion consumer service.</param>
+        /// <returns></returns>
         public static string GetSignedSamlLoginRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, X509Certificate2 certificate, ushort assertionConsumerServiceIndex)
         {
             return GetSignedSamlLoginRequest(requestId, serviceProviderId, identityProviderRequestUrl, certificate, new SamlSpidProviderLoginOptions() { AssertionConsumerServiceIndex = assertionConsumerServiceIndex });
         }
 
+        /// <summary>
+        /// Gets the signed saml login request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="certificate">The certificate.</param>
+        /// <param name="assertionConsumerServiceIndex">Index of the assertion consumer service.</param>
+        /// <param name="spidAuthLevel">The spid authentication level.</param>
+        /// <returns></returns>
         public static string GetSignedSamlLoginRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, X509Certificate2 certificate, ushort assertionConsumerServiceIndex, SpidAuthLevel spidAuthLevel)
         {
             return GetSignedSamlLoginRequest(requestId, serviceProviderId, identityProviderRequestUrl, certificate, new SamlSpidProviderLoginOptions() { AssertionConsumerServiceIndex = assertionConsumerServiceIndex, SpidLevel = spidAuthLevel });
         }
 
+        /// <summary>
+        /// Gets the signed saml login request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="certificate">The certificate.</param>
+        /// <param name="assertionConsumerServiceIndex">Index of the assertion consumer service.</param>
+        /// <param name="attributeConsumingServiceIndex">Index of the attribute consuming service.</param>
+        /// <returns></returns>
         public static string GetSignedSamlLoginRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, X509Certificate2 certificate, ushort assertionConsumerServiceIndex, ushort attributeConsumingServiceIndex)
         {
             return GetSignedSamlLoginRequest(requestId, serviceProviderId, identityProviderRequestUrl, certificate, new SamlSpidProviderLoginOptions() { AssertionConsumerServiceIndex = assertionConsumerServiceIndex, AttributeConsumingServiceIndex = attributeConsumingServiceIndex });
         }
 
+        /// <summary>
+        /// Gets the signed saml login request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="certificate">The certificate.</param>
+        /// <param name="assertionConsumerServiceIndex">Index of the assertion consumer service.</param>
+        /// <param name="attributeConsumingServiceIndex">Index of the attribute consuming service.</param>
+        /// <param name="spidAuthLevel">The spid authentication level.</param>
+        /// <returns></returns>
         public static string GetSignedSamlLoginRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, X509Certificate2 certificate, ushort assertionConsumerServiceIndex, ushort attributeConsumingServiceIndex, SpidAuthLevel spidAuthLevel)
         {
             return GetSignedSamlLoginRequest(requestId, serviceProviderId, identityProviderRequestUrl, certificate, new SamlSpidProviderLoginOptions() { AssertionConsumerServiceIndex = assertionConsumerServiceIndex, AttributeConsumingServiceIndex = attributeConsumingServiceIndex, SpidLevel = spidAuthLevel });
         }
 
+        /// <summary>
+        /// Gets the signed saml login request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="certificate">The certificate.</param>
+        /// <param name="options">The options.</param>
+        /// <returns></returns>
         public static string GetSignedSamlLoginRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, X509Certificate2 certificate, SamlSpidProviderLoginOptions options)
         {
             AuthRequestOptions authRequestOptions = new AuthRequestOptions()
             {
-                UUID = requestId,
-                SPUID = serviceProviderId,
-                Destination = identityProviderRequestUrl,
                 AssertionConsumerServiceIndex = options.AssertionConsumerServiceIndex,
                 AttributeConsumingServiceIndex = options.AttributeConsumingServiceIndex,
-                SPIDLevel = (SPIDLevel)options.SpidLevel,
                 NotBefore = options.NotBefore,
                 NotOnOrAfter = options.NotOnOrAfter,
                 Version = options.Version
             };
-            AuthRequest authRequest = new AuthRequest(authRequestOptions);
+            AuthRequest authRequest = new AuthRequest(requestId, serviceProviderId, identityProviderRequestUrl, (SPIDLevel)options.SpidLevel, authRequestOptions);
             return authRequest.GetSignedAuthRequest(certificate);
         }
 
@@ -139,35 +263,59 @@ namespace DotNetCode.Spid.Helpers
 
 
 
-
-
-
         #region "Signed Logout Request"
 
+        /// <summary>
+        /// Gets the signed saml logout request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="sessionId">The session identifier.</param>
+        /// <param name="subjectNameId">The subject name identifier.</param>
+        /// <param name="certificate">The certificate.</param>
+        /// <returns></returns>
         public static string GetSignedSamlLogoutRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, string sessionId, string subjectNameId, X509Certificate2 certificate)
         {
             return GetSignedSamlLogoutRequest(requestId, serviceProviderId, identityProviderRequestUrl, sessionId, subjectNameId, certificate, new SamlSpidProviderLogoutOptions());
         }
 
+        /// <summary>
+        /// Gets the signed saml logout request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="sessionId">The session identifier.</param>
+        /// <param name="subjectNameId">The subject name identifier.</param>
+        /// <param name="certificate">The certificate.</param>
+        /// <param name="logoutLevel">The logout level.</param>
+        /// <returns></returns>
         public static string GetSignedSamlLogoutRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, string sessionId, string subjectNameId, X509Certificate2 certificate, SpidLogoutLevel logoutLevel)
         {
-            return GetSignedSamlLogoutRequest(requestId, serviceProviderId, identityProviderRequestUrl, sessionId, subjectNameId,certificate, new SamlSpidProviderLogoutOptions() { LogoutLevel = logoutLevel });
+            return GetSignedSamlLogoutRequest(requestId, serviceProviderId, identityProviderRequestUrl, sessionId, subjectNameId, certificate, new SamlSpidProviderLogoutOptions() { LogoutLevel = logoutLevel });
         }
 
+        /// <summary>
+        /// Gets the signed saml logout request.
+        /// </summary>
+        /// <param name="requestId">The request identifier.</param>
+        /// <param name="serviceProviderId">The service provider identifier.</param>
+        /// <param name="identityProviderRequestUrl">The identity provider request URL.</param>
+        /// <param name="sessionId">The session identifier.</param>
+        /// <param name="subjectNameId">The subject name identifier.</param>
+        /// <param name="certificate">The certificate.</param>
+        /// <param name="options">The options.</param>
+        /// <returns></returns>
         public static string GetSignedSamlLogoutRequest(string requestId, string serviceProviderId, string identityProviderRequestUrl, string sessionId, string subjectNameId, X509Certificate2 certificate, SamlSpidProviderLogoutOptions options)
         {
             LogoutRequestOptions logoutRequestOptions = new LogoutRequestOptions()
             {
-                UUID = requestId,
-                Destination = identityProviderRequestUrl,
-                SPUID = serviceProviderId,
-                SessionId = sessionId,
-                SubjectNameId = subjectNameId,
                 LogoutLevel = (LogoutLevel)options.LogoutLevel,
                 NotOnOrAfter = options.NotOnOrAfter,
                 Version = options.Version
             };
-            LogoutRequest logoutRequest = new LogoutRequest(logoutRequestOptions);
+            LogoutRequest logoutRequest = new LogoutRequest(requestId, serviceProviderId, identityProviderRequestUrl, sessionId, subjectNameId, logoutRequestOptions);
             return logoutRequest.GetSignedLogoutRequest(certificate);
 
         }
@@ -265,6 +413,12 @@ namespace DotNetCode.Spid.Helpers
             }
 
 
+            /// <summary>
+            /// Gets or sets the version.
+            /// </summary>
+            /// <value>
+            /// The version.
+            /// </value>
             public string Version { get; set; }
 
 
@@ -291,6 +445,6 @@ namespace DotNetCode.Spid.Helpers
     }
 
 
-   
+
 
 }

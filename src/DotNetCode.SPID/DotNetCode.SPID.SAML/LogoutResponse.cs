@@ -8,6 +8,9 @@ using System.Xml.Serialization;
 
 namespace DotNetCode.SPID.SAML
 {
+    /// <summary>
+    /// Logout Response
+    /// </summary>
     public class LogoutResponse
     {
         public string Version { get; set; }

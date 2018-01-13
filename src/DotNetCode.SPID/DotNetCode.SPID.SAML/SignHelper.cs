@@ -45,7 +45,6 @@ namespace DotNetCode.SPID.SAML
             //Full Framework Only
 #if NETFULL
             key.FromXmlString(xmlPrivateKey);
-
 #else
             //.Net Standard Extension
             RSAKeyExtensions.FromXmlString(key, xmlPrivateKey);

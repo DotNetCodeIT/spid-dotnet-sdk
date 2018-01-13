@@ -12,32 +12,93 @@ namespace DotNetCode.SPID.SAML
 {
     public class AuthResponse
     {
+        /// <summary>
+        /// Gets or sets the version.
+        /// </summary>
+        /// <value>
+        /// The version.
+        /// </value>
         public string Version { get; set; }
 
+        /// <summary>
+        /// Gets or sets the issuer.
+        /// </summary>
+        /// <value>
+        /// The issuer.
+        /// </value>
         public string Issuer { get; set; }
 
+        /// <summary>
+        /// Gets or sets the UUID.
+        /// </summary>
+        /// <value>
+        /// The UUID.
+        /// </value>
         public string UUID { get; set; }
 
 
+        /// <summary>
+        /// Gets or sets the spuid.
+        /// </summary>
+        /// <value>
+        /// The spuid.
+        /// </value>
         public string SPUID { get; set; }
 
+        /// <summary>
+        /// Gets or sets the subject name identifier.
+        /// </summary>
+        /// <value>
+        /// The subject name identifier.
+        /// </value>
         public string SubjectNameId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the session identifier.
+        /// </summary>
+        /// <value>
+        /// The session identifier.
+        /// </value>
         public string SessionId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the session identifier expire date.
+        /// </summary>
+        /// <value>
+        /// The session identifier expire date.
+        /// </value>
         public DateTime SessionIdExpireDate { get; set; }
-              
+
+        /// <summary>
+        /// Gets or sets the user.
+        /// </summary>
+        /// <value>
+        /// The user.
+        /// </value>
         public SpidUserData User { get; set; }
 
+        /// <summary>
+        /// Gets or sets the request status.
+        /// </summary>
+        /// <value>
+        /// The request status.
+        /// </value>
         public SamlRequestStatus RequestStatus { get; set; }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthResponse"/> class.
+        /// </summary>
         public AuthResponse()
         {
             User = new SpidUserData();
             RequestStatus= SamlRequestStatus.GenericError;
         }
 
+        /// <summary>
+        /// Gets the claims.
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, string> GetClaims()
         {
             Dictionary<string, string> claims = new Dictionary<string, string>();
@@ -76,6 +137,10 @@ namespace DotNetCode.SPID.SAML
         }
 
 
+        /// <summary>
+        /// Deserializes the specified saml response.
+        /// </summary>
+        /// <param name="samlResponse">The saml response.</param>
         public void Deserialize(string samlResponse)
         {
             ResponseType response = new ResponseType();

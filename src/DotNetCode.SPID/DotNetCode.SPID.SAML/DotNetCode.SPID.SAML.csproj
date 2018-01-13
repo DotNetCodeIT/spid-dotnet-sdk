@@ -10,13 +10,13 @@
     <PackageProjectUrl>https://github.com/dotnetcode/spid-dotnet-sdk</PackageProjectUrl>
     <Description>SPID  .NET SDK Usefull library to connect to Italian Identity Provider using SPID</Description>
     <PackageIconUrl>https://developers.italia.it/assets/icons/logo-it.png</PackageIconUrl>
-    <Version>1.0.3</Version>
+    <Version>1.0.0-RC-1</Version>
     <RepositoryUrl>https://github.com/dotnetcode/spid-dotnet-sdk</RepositoryUrl>
-    <PackageTags>SPID .NET SDK  SAML AUTHENTICATION</PackageTags>
+    <PackageTags>SPID .NET SDK  SAML AUTHENTICATION LIBRARY</PackageTags>
     <RepositoryType>GitHub</RepositoryType>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <AssemblyVersion>1.0.3.0</AssemblyVersion>
-    <FileVersion>1.0.3.0</FileVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
   <!-- Conditionally obtain references for the .NET Framework target -->
@@ -52,14 +52,21 @@
 
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-   <!-- <PackageReference Include="System.Security.Cryptography.Xml" Version="4.5.0-preview2-25707-02" />
+    <!-- <PackageReference Include="System.Security.Cryptography.Xml" Version="4.5.0-preview2-25707-02" />
 -->
     <PackageReference Include="System.Security.Cryptography.Xml" Version="4.4.0" />
   </ItemGroup>
+  
 
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
     <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.0'">
+    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD1_0</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.1'">
+    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD1_1</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net47'">
@@ -90,7 +97,5 @@
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net35'">
     <DefineConstants>NET35;NETFULL</DefineConstants>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="SpidProviderConfiguration.cs" />
-  </ItemGroup>
+
 </Project>

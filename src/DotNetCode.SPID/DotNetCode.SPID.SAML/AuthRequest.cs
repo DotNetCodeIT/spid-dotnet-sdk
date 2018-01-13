@@ -10,9 +10,7 @@ using System.Xml.Serialization;
 
 namespace DotNetCode.SPID.SAML
 {
-
-   
-
+    
     /// <summary>
     /// Auth Request Options
     /// </summary>
@@ -26,32 +24,12 @@ namespace DotNetCode.SPID.SAML
         {
             //SAML Protocol Default Version
             this.Version = "2.0";
-
-            //Default SPID Level
-            this.SPIDLevel = SPIDLevel.SPIDL1;
-
+            
             this.NotBefore = new TimeSpan(0, -2, 0);
 
             this.NotOnOrAfter = new TimeSpan(0, 5, 0);
-
         }
 
-
-        /// <summary>
-        /// Gets or sets the UUID.
-        /// </summary>
-        /// <value>
-        /// The UUID.
-        /// </value>
-        public string UUID { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Service Provider Unique ID.
-        /// </summary>
-        /// <value>
-        /// The spuid.
-        /// </value>
-        public string SPUID { get; set; }
 
         /// <summary>
         /// Gets or sets the version.
@@ -61,21 +39,6 @@ namespace DotNetCode.SPID.SAML
         /// </value>
         public string Version { get; set; }
 
-        /// <summary>
-        /// Gets or sets the destination.
-        /// </summary>
-        /// <value>
-        /// The destination.
-        /// </value>
-        public string Destination { get; set; }
-
-        /// <summary>
-        /// Gets or sets the spid level.
-        /// </summary>
-        /// <value>
-        /// The spid level.
-        /// </value>
-        public SPIDLevel SPIDLevel { get; set; }
 
         /// <summary>
         /// Gets or sets the index of the assertion consumer service.
@@ -94,8 +57,20 @@ namespace DotNetCode.SPID.SAML
         /// </value>
         public ushort AttributeConsumingServiceIndex { get; set; }
 
+        /// <summary>
+        /// Gets or sets the not before timespan.
+        /// </summary>
+        /// <value>
+        /// The not before.
+        /// </value>
         public TimeSpan NotBefore { get; set; }
 
+        /// <summary>
+        /// Gets or sets the not on or after timespan.
+        /// </summary>
+        /// <value>
+        /// The not on or after.
+        /// </value>
         public TimeSpan NotOnOrAfter { get; set; }
 
 
@@ -108,21 +83,77 @@ namespace DotNetCode.SPID.SAML
     /// </summary>
     public class AuthRequest
     {
+       
+        /// <summary>
+        /// Gets or sets the Unique Request ID (GUID).
+        /// </summary>
+        /// <value>
+        /// The UUID.
+        /// </value>
+        public string UUID { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Service Provider Unique ID.
+        /// </summary>
+        /// <value>
+        /// The spuid.
+        /// </value>
+        public string SPUID { get; set; }
+
+        /// <summary>
+        /// Gets or sets the destination.
+        /// </summary>
+        /// <value>
+        /// The destination.
+        /// </value>
+        public string Destination { get; set; }
+
+        /// <summary>
+        /// Gets or sets the spid level.
+        /// </summary>
+        /// <value>
+        /// The spid level.
+        /// </value>
+        public SPIDLevel SPIDLevel { get; set; }
+
         /// <summary>
         /// Gets or sets the options.
         /// </summary>
         /// <value>
         /// The options.
         /// </value>
-
         public AuthRequestOptions Options { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthRequest"/> class.
         /// </summary>
-        /// <param name="options">The options.</param>
-        public AuthRequest(AuthRequestOptions options)
+        /// <param name="uuid">The UUID.</param>
+        /// <param name="spuid">The spuid.</param>
+        /// <param name="destination">The destination.</param>
+        /// <param name="spidLevel">The spid level.</param>
+        public AuthRequest(string uuid, string spuid, string destination, SPIDLevel spidLevel)
         {
+            this.UUID = uuid;
+            this.SPUID = spuid;
+            this.Destination = destination;
+            this.SPIDLevel = spidLevel;
+            this.Options = new AuthRequestOptions();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthRequest"/> class.
+        /// </summary>
+        /// <param name="uuid">The UUID.</param>
+        /// <param name="spuid">The spuid.</param>
+        /// <param name="destination">The destination.</param>
+        /// <param name="spidLevel">The spid level.</param>
+        /// <param name="options">The options.</param>
+        public AuthRequest(string uuid, string spuid, string destination, SPIDLevel spidLevel, AuthRequestOptions options)
+        {
+            this.UUID = uuid;
+            this.SPUID = spuid;
+            this.Destination = destination;
+            this.SPIDLevel = spidLevel;
             this.Options = options;
         }
 
@@ -133,26 +164,28 @@ namespace DotNetCode.SPID.SAML
         public string GetAuthRequest()
         {
             //Check SSO Destination URL
-            if (string.IsNullOrEmpty(this.Options.Destination)) throw new ArgumentNullException("Destination", "Destination cannot be null or empty");
+            if (string.IsNullOrEmpty(this.Destination)) throw new ArgumentNullException("Destination", "Destination cannot be null or empty");
 
             string result = "";
 
             DateTime requestDatTime = DateTime.UtcNow;
-            
+
             //New AuthnRequestType
-            AuthnRequestType request = new AuthnRequestType();
+            AuthnRequestType request = new AuthnRequestType
+            {
 
-            //Unique UUID
-            request.ID = "_" + this.Options.UUID;
+                //Unique UUID
+                ID = "_" + this.UUID,
 
-            //SAML VERSION Default 2.0
-            request.Version = Options.Version;
+                //SAML VERSION Default 2.0
+                Version = Options.Version,
 
-            //Request DateTime
-            request.IssueInstant = requestDatTime;
+                //Request DateTime
+                IssueInstant = requestDatTime
+            };
 
             //Request Force Authn
-            if ((int)Options.SPIDLevel > 1)
+            if ((int)SPIDLevel > 1)
             {
                 request.ForceAuthn = true;
                 request.ForceAuthnSpecified = true;
@@ -162,9 +195,9 @@ namespace DotNetCode.SPID.SAML
                 request.ForceAuthn = false;
                 request.ForceAuthnSpecified = true;
             }
-            
+
             //SSO (Single Sign On) Destination URI
-            request.Destination = this.Options.Destination;
+            request.Destination = this.Destination;
 
             //Service Provider Assertion Consumer Service Index
             request.AssertionConsumerServiceIndex = this.Options.AssertionConsumerServiceIndex;
@@ -178,8 +211,8 @@ namespace DotNetCode.SPID.SAML
             request.Issuer = new NameIDType()
             {
                 Format = "urn:oasis:names:tc:SAML:2.0:nameid-format:entity",
-                Value = Options.SPUID,
-                NameQualifier = Options.SPUID
+                Value = this.SPUID,
+                NameQualifier = this.SPUID
             };
 
             //NameId Policy
@@ -204,9 +237,9 @@ namespace DotNetCode.SPID.SAML
                 Comparison = AuthnContextComparisonType.minimum,
                 ComparisonSpecified = true,
                 ItemsElementName = new ItemsChoiceType7[] { ItemsChoiceType7.AuthnContextClassRef },
-                Items = new string[] { "https://www.spid.gov.it/SpidL" + ((int)Options.SPIDLevel).ToString() }
+                Items = new string[] { "https://www.spid.gov.it/SpidL" + ((int)this.SPIDLevel).ToString() }
             };
-            
+
             string samlRequest = "";
             try
             {
@@ -237,7 +270,7 @@ namespace DotNetCode.SPID.SAML
                 //TODO log
                 throw ex;
             }
-            
+
             result = samlRequest;
 
 
@@ -298,11 +331,15 @@ namespace DotNetCode.SPID.SAML
         /// <returns></returns>
         public string SignAuthRequest(string authrequest, X509Certificate2 cert)
         {
-            //Full Framework Only
-            //var xmlPrivateKey = cert.PrivateKey.ToXmlString(true);
-            //.Net Standard Extension
-            //var xmlPrivateKey = RSAKeyExtensions.ToXmlString((RSA)cert.PrivateKey, true);
             var xmlPrivateKey = "";
+#if NETFULL
+           xmlPrivateKey = cert.PrivateKey.ToXmlString(true);
+#endif
+
+#if NETSTANDARD2_0
+            xmlPrivateKey = RSAKeyExtensions.ToXmlString((RSA)cert.PrivateKey, true);
+#endif
+
             return SignAuthRequest(authrequest, cert, xmlPrivateKey);
         }
 
@@ -333,6 +370,6 @@ namespace DotNetCode.SPID.SAML
         }
 
 
-       
+
     }
 }
