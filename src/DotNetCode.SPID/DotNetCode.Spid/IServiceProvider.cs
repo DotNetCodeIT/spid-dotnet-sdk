@@ -15,7 +15,7 @@ namespace DotNetCode.Spid
 
         string OrganizationUrl { get; set; }
 
-       
+        List<IdentityProvider> IdentityProviders { get; set; }
     }
 
   

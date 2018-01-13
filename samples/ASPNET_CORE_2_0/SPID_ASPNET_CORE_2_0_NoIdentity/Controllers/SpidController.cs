@@ -9,7 +9,7 @@
 //using Microsoft.Net.Http.Headers;
 //using System.Globalization;
 //using System.Text;
-//using DotNetCode.SPID.SAML;
+//using DotNetCode.SPID;
 //using System.Security.Cryptography.X509Certificates;
 //using Microsoft.AspNetCore.Hosting;
 //using Microsoft.Extensions.Configuration;
@@ -84,7 +84,7 @@
 //            }
 //            catch (Exception ex)
 //            {
-//                _logger.LogError(ex,"Error creating SAML Request for {0}", spidProviderConfiguration.IdentityProviderId);
+//                _logger.LogError(ex, "Error creating SAML Request for {0}", spidProviderConfiguration.IdentityProviderId);
 
 //            }
 
@@ -135,11 +135,12 @@
 //            }
 //            else
 //            {
-                
+
 //                var spidProviderConfiguration = new SpidProviderConfiguration();
 //                _configuration.GetSection("Spid:" + providerId).Bind(spidProviderConfiguration);
 
-//                if (string.IsNullOrEmpty(spidProviderConfiguration.IdentityProviderName)){
+//                if (string.IsNullOrEmpty(spidProviderConfiguration.IdentityProviderName))
+//                {
 //                    return View("Login");
 //                }
 //                else
@@ -260,7 +261,7 @@
 
 //            var spidProviderConfiguration = new SpidProviderConfiguration();
 //            _configuration.GetSection("Spid:" + providerId).Bind(spidProviderConfiguration);
-            
+
 //            string spidLogoutRequest = GetSpidLogoutRequest(spidProviderConfiguration);
 
 //            string redirectUri = Request.Headers["Referer"].ToString();// Request.QueryString["RedirectUrl"];
@@ -297,7 +298,7 @@
 
 //            await Response.Body.WriteAsync(buffer, 0, buffer.Length);
 //            return Ok();
-            
+
 //        }
 
 //        [HttpPost("/spidsaml/logout")]
@@ -316,7 +317,7 @@
 //            }
 //            catch (Exception ex)
 //            {
-//              _logger.LogError(ex, "Error reading SAML Response {0}", samlResponse);
+//                _logger.LogError(ex, "Error reading SAML Response {0}", samlResponse);
 //            }
 
 //            return Redirect("/");
