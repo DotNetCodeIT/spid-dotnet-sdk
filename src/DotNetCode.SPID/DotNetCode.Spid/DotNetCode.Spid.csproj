@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>SPID  .NET SDK Usefull library to connect to Italian Identity Provider using SPID</Description>
+    <Company>DotNetCode</Company>
+    <Authors>Luca Congiu</Authors>
+    <Copyright>Luca Congiu</Copyright>
+    <PackageLicenseUrl>https://github.com/dotnetcode/spid-dotnet-sdk</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/dotnetcode/spid-dotnet-sdk</PackageProjectUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <RepositoryUrl>https://github.com/dotnetcode/spid-dotnet-sdk</RepositoryUrl>
+    <PackageTags>SPID .NET SDK  LIBRARY</PackageTags>
+    <PackageIconUrl>https://github.com/italia/spid-graphics/raw/master/icons/spid-ico-square-lb.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>

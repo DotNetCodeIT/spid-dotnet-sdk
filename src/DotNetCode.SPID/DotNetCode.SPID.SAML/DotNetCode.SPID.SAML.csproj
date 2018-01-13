@@ -9,7 +9,7 @@
     <PackageLicenseUrl>https://github.com/dotnetcode/spid-dotnet-sdk</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/dotnetcode/spid-dotnet-sdk</PackageProjectUrl>
     <Description>SPID  .NET SDK Usefull library to connect to Italian Identity Provider using SPID</Description>
-    <PackageIconUrl>https://developers.italia.it/assets/icons/logo-it.png</PackageIconUrl>
+    <PackageIconUrl>https://github.com/italia/spid-graphics/raw/master/icons/spid-ico-square-lb.png</PackageIconUrl>
     <Version>1.0.0-RC-1</Version>
     <RepositoryUrl>https://github.com/dotnetcode/spid-dotnet-sdk</RepositoryUrl>
     <PackageTags>SPID .NET SDK  SAML AUTHENTICATION LIBRARY</PackageTags>
