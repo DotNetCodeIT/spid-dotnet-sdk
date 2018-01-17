@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using DotNetCode.Spid;
 using DotNetCode.Spid.Helpers;
 
-namespace DotNetCode.SPID.Test
+namespace DotNetCode.Spid.Test
 {
     [TestClass]
     public class ConfigTest

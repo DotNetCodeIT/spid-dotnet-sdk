@@ -84,9 +84,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DotNetCode.SPID\DotNetCode.SPID.SAML\DotNetCode.SPID.SAML.csproj">
+    <ProjectReference Include="..\..\src\DotNetCode.SPID\DotNetCode.SPID.SAML\DotNetCode.Spid.Saml.csproj">
       <Project>{131e421e-ea68-44b7-860d-cbeb110a00fc}</Project>
-      <Name>DotNetCode.SPID.SAML</Name>
+      <Name>DotNetCode.Spid.Saml</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\DotNetCode.SPID\DotNetCode.Spid\DotNetCode.Spid.csproj">
       <Project>{af9da626-5f81-49ef-9dd2-e4c5f882b00e}</Project>

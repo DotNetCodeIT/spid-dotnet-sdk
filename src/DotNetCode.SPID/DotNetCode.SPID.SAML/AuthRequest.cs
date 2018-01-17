@@ -8,7 +8,7 @@ using System.Xml;
 using System.Xml.Serialization;
 
 
-namespace DotNetCode.SPID.SAML
+namespace DotNetCode.Spid.SAML
 {
     
     /// <summary>

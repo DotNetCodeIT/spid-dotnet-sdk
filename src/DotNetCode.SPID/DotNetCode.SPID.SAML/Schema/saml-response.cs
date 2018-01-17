@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 using System.Collections.Generic;
-namespace DotNetCode.SPID.SAML.Schema
+namespace DotNetCode.Spid.SAML.Schema
 {
 
     [XmlRoot(ElementName = "Issuer", Namespace = "urn:oasis:names:tc:SAML:2.0:assertion")]

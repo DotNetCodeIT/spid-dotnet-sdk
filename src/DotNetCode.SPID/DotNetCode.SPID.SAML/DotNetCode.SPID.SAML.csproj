@@ -17,6 +17,8 @@
     <PackageReleaseNotes></PackageReleaseNotes>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+    <AssemblyName>DotNetCode.Spid.Saml</AssemblyName>
+    <RootNamespace>DotNetCode.Spid.Saml</RootNamespace>
   </PropertyGroup>
 
   <!-- Conditionally obtain references for the .NET Framework target -->

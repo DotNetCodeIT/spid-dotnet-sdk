@@ -1,4 +1,4 @@
-﻿using DotNetCode.SPID.SAML.Schema;
+﻿using DotNetCode.Spid.SAML.Schema;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace DotNetCode.SPID.SAML
+namespace DotNetCode.Spid.SAML
 {
     /// <summary>
     /// Logout Response

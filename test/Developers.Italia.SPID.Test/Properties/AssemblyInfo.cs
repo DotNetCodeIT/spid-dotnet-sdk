@@ -2,11 +2,11 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("DotNetCode.SPID.Test")]
+[assembly: AssemblyTitle("DotNetCode.Spid.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Luca Congiu")]
-[assembly: AssemblyProduct("DotNetCode.SPID.Test")]
+[assembly: AssemblyProduct("DotNetCode.Spid.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

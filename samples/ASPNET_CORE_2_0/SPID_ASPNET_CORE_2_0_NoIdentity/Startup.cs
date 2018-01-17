@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using DotNetCode.Spid.Helpers;
 
 namespace SPID_ASPNET_CORE_2_0_NoIdentity
 {
@@ -24,21 +25,28 @@ namespace SPID_ASPNET_CORE_2_0_NoIdentity
         public void ConfigureServices(IServiceCollection services)
         {
             string spidScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            services.AddAuthentication(options =>
+            services.AddAuthentication(defaultScheme: spidScheme).AddSpid(new DotNetCode.Spid.ServiceProvider()
             {
-                options.DefaultScheme = spidScheme;
-
-                options.DefaultChallengeScheme = spidScheme;
-
-                options.DefaultSignInScheme = spidScheme;
-
-                options.DefaultSignOutScheme = spidScheme;
-
-                options.DefaultAuthenticateScheme = spidScheme;
-
-                options.DefaultForbidScheme = spidScheme;
-
-            }).AddCookie(spidScheme, options =>
+                ServiceProviderId = "http:www.dotnetcode.it",
+                IdentityProviders = new List<DotNetCode.Spid.IdentityProvider>()
+                 {
+                      new DotNetCode.Spid.IdentityProvider("PosteTest", DotNetCode.Spid.SpidProviderType.Saml2){
+                          OrganizationName= "Poste Italiane SpA IDP DI TEST",
+                          OrganizationDisplayName= "Poste Italiane SpA IDP DI TEST",
+                          OrganizationUrl= "https://spidposte.test.poste.it",
+                          OrganizationLogoUrl= "https://raw.githubusercontent.com/italia/spid-graphics/master/idp-logos/spid-idp-posteid.png",
+                            Settings= new Dictionary<string, string>() {
+                              {"AssertionConsumerServiceIndex", "1" },
+                              { "AttributeConsumingServiceIndex", "1" },
+                              { "CertificateFileName", "cert/www_dotnetcode_it.pfx" },
+                              { "CertificateFilePassword", "P@ssw0rd!" },
+                            { "SingleSignOnServiceUrl", "https://spidposte.test.poste.it/jod-fs/ssoservicepost" },
+                            { "SingleLogoutServiceUrl", "https://spidposte.test.poste.it/jod-fs/sloservicepost" }
+                          }
+                      }
+                }
+            })
+            .AddCookie(spidScheme, options =>
             {
                 options.LoginPath = new PathString("/account/login");
                 options.AccessDeniedPath = new PathString("/error?unauth");

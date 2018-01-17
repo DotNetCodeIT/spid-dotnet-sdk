@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication;
+using DotNetCode.Spid;
 
 namespace DotNetCode.AspNetCore.Authentication.Spid
 {
@@ -28,53 +29,21 @@ namespace DotNetCode.AspNetCore.Authentication.Spid
             };
         }
 
-
-
         /// <summary>
-        /// Gets or sets the Service Provider Unique ID.
+        /// Gets or sets the service provider identifier.
         /// </summary>
         /// <value>
-        /// The spuid.
+        /// The service provider identifier.
         /// </value>
-        public string SPUID { get; set; }
-
+        public string ServiceProviderId{ get; set; }
 
         /// <summary>
-        /// Gets or sets the destination.
+        /// Gets or sets the identity provider.
         /// </summary>
         /// <value>
-        /// The destination.
+        /// The identity provider.
         /// </value>
-        public string Destination { get; set; }
-
-        /// <summary>
-        /// Gets or sets the spid level.
-        /// </summary>
-        /// <value>
-        /// The spid level.
-        /// </value>
-        public ushort SPIDLevel { get; set; }
-
-        /// <summary>
-        /// Gets or sets the index of the assertion consumer service.
-        /// Refer to Service Provider Metadata Index Value On AssertionConsumerService
-        /// </summary>
-        /// <value>
-        /// The index of the assertion consumer service.
-        /// </value>
-        public ushort AssertionConsumerServiceIndex { get; set; }
-
-        /// <summary>
-        /// Gets or sets the index of the attribute consuming service.
-        /// </summary>
-        /// <value>
-        /// The index of the attribute consuming service.
-        /// </value>
-        public ushort AttributeConsumingServiceIndex { get; set; }
-
-        public string SPIDCertPath { get; set; }
-        public string SPIDCertPassword { get; set; }
-        public string SPIDCertPrivateKey { get; set; }
+        public IIdentityProvider IdentityProvider { get; set; }
 
 
         /// <summary>

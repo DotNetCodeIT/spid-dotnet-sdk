@@ -1,11 +1,11 @@
 ﻿using System;
-using DotNetCode.SPID;
+using DotNetCode.Spid;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DotNetCode.Spid.Factory;
 using DotNetCode.Spid;
 using DotNetCode.Spid.SAML;
 
-namespace DotNetCode.SPID.Test
+namespace DotNetCode.Spid.Test
 {
     [TestClass]
     public class IdentityProviderFactoryTest

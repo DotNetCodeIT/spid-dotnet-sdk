@@ -1,4 +1,4 @@
-﻿using DotNetCode.SPID.SAML;
+﻿using DotNetCode.Spid.SAML;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;

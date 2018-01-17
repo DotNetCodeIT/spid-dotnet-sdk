@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DotNetCode.SPID.SAML
+namespace DotNetCode.Spid.SAML
 {
     public class SpidUserData
     {
