@@ -66,7 +66,7 @@ namespace Developers.Italia.SPID.Test.AspNetCore2.Controllers
                 XmlSerializer xmlSerializer =new XmlSerializer(typeof(IdentityProvider));
                 FileStream xmlData = new FileStream(configFile, FileMode.Open);
                 idp = (IdentityProvider)xmlSerializer.Deserialize(xmlData);
-
+                xmlData.Close();
                 //TEST PURPOSE ONLY
 
 
