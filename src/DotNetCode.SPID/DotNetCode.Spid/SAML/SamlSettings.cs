@@ -35,7 +35,7 @@ namespace DotNetCode.Spid.SAML
         /// <summary>
         /// The certificate file name
         /// </summary>
-        public const string CertificateFileName = "CertificateFilePath";
+        public const string CertificateFilePath = "CertificateFilePath";
 
         /// <summary>
         /// The certificate file password
@@ -57,7 +57,7 @@ namespace DotNetCode.Spid.SAML
                     { SingleSignOnServiceUrl,string.Empty },
                     { SingleLogoutServiceUrl,string.Empty },
                     { CertificateStoreName,string.Empty },
-                    { CertificateFileName,string.Empty },
+                    { CertificateFilePath,string.Empty },
                     { CertificateFilePassword,string.Empty },
                     { AssertionConsumerServiceIndex,"0" },
                     { AttributeConsumingServiceIndex,"0" }

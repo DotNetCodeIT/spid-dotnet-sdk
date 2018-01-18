@@ -51,9 +51,9 @@ namespace SPID_ASPNET_CORE_2_0_Identity
                             Settings= new Dictionary<string, string>() {
                               {"AssertionConsumerServiceIndex", "1" },
                               { "AttributeConsumingServiceIndex", "1" },
-                                {   "CertificateStoreName","dotnetcode.it"},
-                              //{ "CertificateFileName", "cert/www_dotnetcode_it.pfx" },
-                              //{ "CertificateFilePassword", "P@ssw0rd!" },
+                                //{   "CertificateStoreName","dotnetcode.it"},
+                              { "CertificateFilePath", "cert/www_dotnetcode_it.pfx" },
+                              { "CertificateFilePassword", "P@ssw0rd!" },
                             { "SingleSignOnServiceUrl", "https://spidposte.test.poste.it/jod-fs/ssoservicepost" },
                             { "SingleLogoutServiceUrl", "https://spidposte.test.poste.it/jod-fs/sloservicepost" }
                           }

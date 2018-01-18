@@ -36,11 +36,11 @@ namespace DotNetCode.Spid.Helpers
 
                 if (string.IsNullOrEmpty(password))
                 {
-                    return new X509Certificate2(fileName);
+                    return new X509Certificate2(fileName,"", X509KeyStorageFlags.Exportable);
                 }
                 else
                 {
-                    return new X509Certificate2(fileName, password);
+                    return new X509Certificate2(fileName, password, X509KeyStorageFlags.Exportable);
                 }
 
             }

@@ -115,6 +115,7 @@ namespace DotNetCode.Spid.SAML
 
         public static string ToXmlString(this RSA rsa, bool includePrivateParameters)
         {
+           
             RSAParameters parameters = rsa.ExportParameters(includePrivateParameters);
 
             return string.Format("<RSAKeyValue><Modulus>{0}</Modulus><Exponent>{1}</Exponent><P>{2}</P><Q>{3}</Q><DP>{4}</DP><DQ>{5}</DQ><InverseQ>{6}</InverseQ><D>{7}</D></RSAKeyValue>",

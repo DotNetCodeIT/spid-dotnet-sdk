@@ -14,6 +14,8 @@ using DotNetCode.Spid;
 using Microsoft.Extensions.Configuration;
 using DotNetCode.Spid.SAML;
 using DotNetCode.Spid.Helpers;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace DotNetCode.AspNetCore.Authentication.Spid
 {
@@ -37,13 +39,13 @@ namespace DotNetCode.AspNetCore.Authentication.Spid
 </html>";
 
         protected HtmlEncoder HtmlEncoder { get; }
-        protected IConfiguration Configuration { get; }
+        protected IHostingEnvironment HostingEnvironment { get; }
 
-        public SpidSamlHandler(IOptionsMonitor<SpidOptions> options, IConfiguration configuration, ILoggerFactory logger, HtmlEncoder htmlEncoder, UrlEncoder encoder, ISystemClock clock)
+        public SpidSamlHandler(IOptionsMonitor<SpidOptions> options, IHostingEnvironment hostingEnvironment, ILoggerFactory logger, HtmlEncoder htmlEncoder, UrlEncoder encoder, ISystemClock clock)
             : base(options, logger, encoder, clock)
         {
             HtmlEncoder = htmlEncoder;
-            Configuration = configuration;
+            HostingEnvironment = hostingEnvironment;
 
         }
 
@@ -65,10 +67,12 @@ namespace DotNetCode.AspNetCore.Authentication.Spid
             {
                 signinCert = DotNetCode.Spid.Helpers.X509Helper.GetCertificateFromStoreByIssuerName(idpSettings[SamlSettings.CertificateStoreName],false);
             }
-            else if (idpSettings.ContainsKey(SamlSettings.CertificateFileName) && !string.IsNullOrWhiteSpace(idpSettings[SamlSettings.CertificateFileName]))
+            else if (idpSettings.ContainsKey(SamlSettings.CertificateFilePath) && !string.IsNullOrWhiteSpace(idpSettings[SamlSettings.CertificateFilePath]))
             {
+                string certfile = (Path.GetFullPath(idpSettings[SamlSettings.CertificateFilePath]))?? Path.Combine( HostingEnvironment.ContentRootPath, idpSettings[SamlSettings.CertificateFilePath]);
                 string certpwd = (idpSettings.ContainsKey(SamlSettings.CertificateFilePassword)) ? idpSettings[SamlSettings.CertificateFilePassword] : "";
-                signinCert = DotNetCode.Spid.Helpers.X509Helper.GetCertificateFromFile(idpSettings[SamlSettings.CertificateStoreName], certpwd);
+
+                signinCert = DotNetCode.Spid.Helpers.X509Helper.GetCertificateFromFile(certfile, certpwd);
             }
 
             //string returnUrl = "/";

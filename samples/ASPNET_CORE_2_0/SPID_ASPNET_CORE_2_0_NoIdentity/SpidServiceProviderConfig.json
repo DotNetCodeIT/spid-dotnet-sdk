@@ -31,7 +31,7 @@
       "Settings": {
         "AssertionConsumerServiceIndex": "1",
         "AttributeConsumingServiceIndex": "1",
-        "CertificateFileName": "cert/www_dotnetcode_it.pfx",
+        "CertificateFilePath": "cert/www_dotnetcode_it.pfx",
         "CertificateFilePassword": "P@ssw0rd!",
         "SingleSignOnServiceUrl": "https://spidposte.test.poste.it/jod-fs/ssoservicepost",
         "SingleLogoutServiceUrl": "https://spidposte.test.poste.it/jod-fs/sloservicepost"
@@ -49,7 +49,7 @@
       "Settings": {
         "AssertionConsumerServiceIndex": "1",
         "AttributeConsumingServiceIndex": "1",
-        "CertificateFileName": "cert/www_dotnetcode_it.pfx",
+        "CertificateFilePath": "cert/www_dotnetcode_it.pfx",
         "CertificateFilePassword": "P@ssw0rd!",
         "SingleSignOnServiceUrl": "https://loginspid.aruba.it/ServiceLoginWelcome",
         "SingleLogoutServiceUrl": "https://loginspid.aruba.it/ServiceLogoutRequest"
@@ -66,7 +66,7 @@
       "Settings": {
         "AssertionConsumerServiceIndex": "1",
         "AttributeConsumingServiceIndex": "1",
-        "CertificateFileName": "cert/www_dotnetcode_it.pfx",
+        "CertificateFilePath": "cert/www_dotnetcode_it.pfx",
         "CertificateFilePassword": "P@ssw0rd!",
         "SingleSignOnServiceUrl": "https://spid.intesa.it/Time4UserServices/services/idp/AuthnRequest",
         "SingleLogoutServiceUrl": "https://spid.intesa.it/Time4UserServices/services/idp/SingleLogout"
@@ -83,7 +83,7 @@
       "Settings": {
         "AssertionConsumerServiceIndex": "1",
         "AttributeConsumingServiceIndex": "1",
-        "CertificateFileName": "cert/www_dotnetcode_it.pfx",
+        "CertificateFilePath": "cert/www_dotnetcode_it.pfx",
         "CertificateFilePassword": "P@ssw0rd!",
         "SingleSignOnServiceUrl": "https://identity.infocert.it/spid/samlsso",
         "SingleLogoutServiceUrl": "https://identity.infocert.it/spid/samlslo"
@@ -100,7 +100,7 @@
       "Settings": {
         "AssertionConsumerServiceIndex": "1",
         "AttributeConsumingServiceIndex": "1",
-        "CertificateFileName": "cert/www_dotnetcode_it.pfx",
+        "CertificateFilePath": "cert/www_dotnetcode_it.pfx",
         "CertificateFilePassword": "P@ssw0rd!",
         "SingleSignOnServiceUrl": "https://idp.namirialtsp.com/idp/profile/SAML2/POST/SSO",
         "SingleLogoutServiceUrl": "https://idp.namirialtsp.com/idp/profile/SAML2/POST/SLO"
@@ -117,7 +117,7 @@
       "Settings": {
         "AssertionConsumerServiceIndex": "1",
         "AttributeConsumingServiceIndex": "1",
-        "CertificateFileName": "cert/www_dotnetcode_it.pfx",
+        "CertificateFilePath": "cert/www_dotnetcode_it.pfx",
         "CertificateFilePassword": "P@ssw0rd!",
         "SingleSignOnServiceUrl": "https://posteid.poste.it/jod-fs/ssoservicepost",
         "SingleLogoutServiceUrl": "https://posteid.poste.it/jod-fs/sloserviceresponsepost"
@@ -134,7 +134,7 @@
       "Settings": {
         "AssertionConsumerServiceIndex": "1",
         "AttributeConsumingServiceIndex": "1",
-        "CertificateFileName": "cert/www_dotnetcode_it.pfx",
+        "CertificateFilePath": "cert/www_dotnetcode_it.pfx",
         "CertificateFilePassword": "P@ssw0rd!",
         "SingleSignOnServiceUrl": "https://spid.register.it/login/sso",
         "SingleLogoutServiceUrl": "https://spid.register.it/login/singleLogout"
@@ -151,7 +151,7 @@
       "Settings": {
         "AssertionConsumerServiceIndex": "1",
         "AttributeConsumingServiceIndex": "1",
-        "CertificateFileName": "cert/www_dotnetcode_it.pfx",
+        "CertificateFilePath": "cert/www_dotnetcode_it.pfx",
         "CertificateFilePassword": "P@ssw0rd!",
         "SingleSignOnServiceUrl": "https://identity.sieltecloud.it/simplesaml/saml2/idp/SSO.php",
         "SingleLogoutServiceUrl": "https://identity.sieltecloud.it/simplesaml/saml2/idp/SLO.php"
@@ -168,7 +168,7 @@
       "Settings": {
         "AssertionConsumerServiceIndex": "1",
         "AttributeConsumingServiceIndex": "1",
-        "CertificateFileName": "cert/www_dotnetcode_it.pfx",
+        "CertificateFilePath": "cert/www_dotnetcode_it.pfx",
         "CertificateFilePassword": "P@ssw0rd!",
         "SingleSignOnServiceUrl": "https://login.id.tim.it/affwebservices/public/saml2sso",
         "SingleLogoutServiceUrl": "https://login.id.tim.it/affwebservices/public/saml2slo"
