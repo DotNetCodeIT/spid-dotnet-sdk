@@ -23,7 +23,10 @@ namespace Microsoft.Extensions.DependencyInjection
             {
                 Action<SpidOptions> options;
 
-                options = o => o.IdentityProvider= (identityProvider);
+                options = o => {
+                    o.IdentityProvider = (identityProvider);
+                    o.ServiceProviderId = serviceProvider.ServiceProviderId;
+                };
                 switch (identityProvider.IdentityProviderType)
                 {
                     case SpidProviderType.Saml2:

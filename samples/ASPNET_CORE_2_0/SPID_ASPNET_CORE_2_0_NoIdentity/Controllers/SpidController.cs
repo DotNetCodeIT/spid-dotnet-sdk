@@ -15,6 +15,7 @@
 //using Microsoft.Extensions.Configuration;
 //using Microsoft.AspNetCore.Http;
 //using Microsoft.Extensions.Logging;
+//using DotNetCode.Spid.SAML;
 
 //namespace SPID_ASPNET_CORE_2_0_NoIdentity.Controllers
 //{

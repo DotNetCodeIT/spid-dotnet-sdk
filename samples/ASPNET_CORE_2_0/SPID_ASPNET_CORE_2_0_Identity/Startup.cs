@@ -40,7 +40,9 @@ namespace SPID_ASPNET_CORE_2_0_Identity
             string spidScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             services.AddAuthentication(defaultScheme: spidScheme).AddSpid(new DotNetCode.Spid.ServiceProvider()
             {
-                ServiceProviderId = "http://www.dotnetcode.it",
+                //ServiceProviderId = "https://spidtest.developers.italia.it",
+                //ServiceProviderId = "https://www.dotnetcode.it",
+                ServiceProviderId = "https://spid.dotnetcode.it",
                 IdentityProviders = new List<DotNetCode.Spid.IdentityProvider>()
                  {
                       new DotNetCode.Spid.IdentityProvider("PosteTest", DotNetCode.Spid.SpidProviderType.Saml2){
@@ -51,11 +53,28 @@ namespace SPID_ASPNET_CORE_2_0_Identity
                             Settings= new Dictionary<string, string>() {
                               {"AssertionConsumerServiceIndex", "1" },
                               { "AttributeConsumingServiceIndex", "1" },
-                                //{   "CertificateStoreName","dotnetcode.it"},
-                              { "CertificateFilePath", "cert/www_dotnetcode_it.pfx" },
-                              { "CertificateFilePassword", "P@ssw0rd!" },
+                               {   "CertificateStoreName","dotnetcode"},
+                               // {   "CertificateStoreName","DevelopersItalia"},
+                              //{ "CertificateFilePath", "cert/certificate.pfx" },
+                              //{ "CertificateFilePassword", "P@ssw0rd!" },
                             { "SingleSignOnServiceUrl", "https://spidposte.test.poste.it/jod-fs/ssoservicepost" },
                             { "SingleLogoutServiceUrl", "https://spidposte.test.poste.it/jod-fs/sloservicepost" }
+                          }
+                      },
+                       new DotNetCode.Spid.IdentityProvider("LocalTest", DotNetCode.Spid.SpidProviderType.Saml2){
+                          OrganizationName= "Local IDP DI TEST",
+                          OrganizationDisplayName= "Local IDP DI TEST",
+                          OrganizationUrl= "https://spid-testenv-identityserver",
+                          OrganizationLogoUrl= "https://raw.githubusercontent.com/italia/spid-graphics/master/idp-logos/spid-idp-posteid.png",
+                            Settings= new Dictionary<string, string>() {
+                              {"AssertionConsumerServiceIndex", "1" },
+                              { "AttributeConsumingServiceIndex", "1" },
+                               {   "CertificateStoreName","DotNetCode"},
+                               // {   "CertificateStoreName","DevelopersItalia"},
+                              //{ "CertificateFilePath", "cert/certificate.pfx" },
+                              //{ "CertificateFilePassword", "P@ssw0rd!" },
+                            { "SingleSignOnServiceUrl", "https://spid-testenv-identityserver:9443/samlsso" },
+                            { "SingleLogoutServiceUrl", "https://spid-testenv-identityserver:9443/samlsso" }
                           }
                       }
                 }
